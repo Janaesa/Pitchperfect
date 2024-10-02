@@ -1,35 +1,40 @@
 let gui;
 let x;
 let clouds;
+let mic;
+let soundLevel = 0;
 
-function preload(){
+function preload() {
   clouds = loadImage("assets/clouds.png");
+  mic = new p5.AudioIn();
+  mic.start();
 }
 
 function setup() {
-     //Creates a canvas that is 600 pixels wide
-    //and 400 pixels high
-     createCanvas(1000, 1000);
-     gui = createGui();
-     x = createSliderV("Slider",50,50);
+  createCanvas(1000, 1000);
+  gui = createGui();
+  x = createSliderV("Slider", 50, 50);
+}
 
-    }
+function draw() {
+  //sky background
+  background(205, 240, 255);
+  image(clouds, 40, 50);
+  image(clouds, 300, 30);
+  image(clouds, 600, 5);
+  drawGui();
 
+  // Get the sound level from the microphone
+  soundLevel = mic.getLevel();
 
-    function draw() {
-        //sky background
-      background(205, 240, 255);
-      image(clouds, 40, 50);
-      image(clouds, 300,30);
-      image(clouds, 600,5);
-      drawGui();
+  // Map the sound level to the slider value
+  x.val = map(soundLevel, 0, 1, 0, 100);
 
-      if(x.isChanged) {
-        print(x.label + " = " + x.val);
-      }
-      
-    }
+  if (x.isChanged) {
+    print(x.label + " = " + x.val);
+  }
+}
 
-    function touchMoved() {
-      return false;
-    }
+function touchMoved() {
+  return false;
+}
