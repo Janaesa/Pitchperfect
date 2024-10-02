@@ -24,6 +24,13 @@ function draw() {
   image(clouds, 600, 5);
   drawGui();
 
+  //window frame
+  rect(5,0,1000,35); //window top
+  rect(5,500,1000,35); //window middle
+  rect(0,965,1000,35); //window bottom
+  rect(0,0,35,1000); //winidow left
+  rect(960,0,40,1000); //window right
+
   // Get the sound level from the microphone
   soundLevel = mic.getLevel();
 
