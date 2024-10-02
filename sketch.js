@@ -45,3 +45,6 @@ function draw() {
 function touchMoved() {
   return false;
 }
+
+//if the bar reaches the top by a certain time then "perfect pitch" image appears
+//if the bar doesnt reach the top by a certain time "un*perfect pitch" image appears
