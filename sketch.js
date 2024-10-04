@@ -1,11 +1,17 @@
 let gui;
 let x;
 let clouds;
+let man;
+let wiper;
+let ladder;
 let mic;
 let soundLevel = 0;
 
 function preload() {
   clouds = loadImage("assets/clouds.png");
+  man = loadImage("assets/man.png");
+  wiper = loadImage("assets/wiper.png");
+  ladder = loadImage("assets/ladder.png");
   mic = new p5.AudioIn();
   mic.start();
 }
@@ -23,6 +29,12 @@ function draw() {
   image(clouds, 300, 30);
   image(clouds, 600, 5);
   drawGui();
+
+  //character
+  image(man, 30, 30);
+  image(wiper, 150, -150)
+  image(ladder, 30, 25)
+
 
   //window frame
   rect(5,0,1000,35); //window top
