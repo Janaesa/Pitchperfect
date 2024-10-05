@@ -1,5 +1,9 @@
 let gui;
 let x;
+let y = -150;
+
+
+let ySpeed = 4;
 let clouds;
 let man;
 let wiper;
@@ -32,8 +36,21 @@ function draw() {
 
   //character
   image(man, 30, 30);
-  image(wiper, 150, -150)
   image(ladder, 30, 25)
+
+  //calculating wiping direction and movement
+
+  y = y + ySpeed
+
+  if (y >= -100 || y <= -150) {
+    ySpeed = ySpeed * -4;
+  }
+
+  //image of wiper in curent position
+  image(wiper, 150, y)
+
+  //reverse direction
+  
 
 
   //window frame
