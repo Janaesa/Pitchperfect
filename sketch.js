@@ -11,6 +11,7 @@ let soundLevel = 0;
 
 function preload() {
   clouds = loadImage("assets/clouds.png");
+  ladder = loadImage("assets/ladder.png");
   gif_createImg = createImg("assets/mang.GIF");
   mic = new p5.AudioIn();
   mic.start();
@@ -29,6 +30,8 @@ function draw() {
   image(clouds, 300, 30);
   image(clouds, 600, 5);
   drawGui();
+
+  image(ladder,-50, 1)
 
   // character position
 
