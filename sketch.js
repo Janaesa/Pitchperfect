@@ -1,11 +1,9 @@
 let gui;
 let x;
-let y = -150;
 
 
-let ySpeed = 4;
 let clouds;
-let man;
+let mang;
 let wiper;
 let ladder;
 let mic;
@@ -13,9 +11,7 @@ let soundLevel = 0;
 
 function preload() {
   clouds = loadImage("assets/clouds.png");
-  man = loadImage("assets/man.png");
-  wiper = loadImage("assets/wiper.png");
-  ladder = loadImage("assets/ladder.png");
+  gif_createImg = createImg("assets/mang.GIF");
   mic = new p5.AudioIn();
   mic.start();
 }
@@ -34,23 +30,10 @@ function draw() {
   image(clouds, 600, 5);
   drawGui();
 
-  //character
-  image(man, 30, 30);
-  image(ladder, 30, 25)
+  // character position
 
-  //calculating wiping direction and movement
+  gif_createImg.position(-50, 0)
 
-  y = y + ySpeed
-
-  if (y >= -100 || y <= -150) {
-    ySpeed = ySpeed * -4;
-  }
-
-  //image of wiper in curent position
-  image(wiper, 150, y)
-
-  //reverse direction
-  
 
 
   //window frame
