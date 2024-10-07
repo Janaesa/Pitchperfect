@@ -1,6 +1,7 @@
 let gui;
 let x;
 let clouds;
+let pitch;
 let mang;
 let wiper;
 let ladder;
@@ -12,6 +13,7 @@ function preload() {
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
   gif_createImg = createImg("assets/mang.GIF");
+  pitch = loadImage("assets/pitch.JPG")
 
 }
 
@@ -25,7 +27,19 @@ function setup() {
 
 function draw() {
 
-  switch (state) {} 
+  switch (state) {
+
+  case 0:
+    
+  // perform case 0 functions
+
+  background("pitch.JPG");
+
+  if (mouseIsPressed) state = 1;
+  break;
+
+  case 1:
+
   //sky background
   background(205, 240, 255);
   image(clouds, 40, 50);
@@ -39,6 +53,8 @@ function draw() {
 
   gif_createImg.position(-50, 0)
 
+  
+
 
 
   //window frame
@@ -49,6 +65,8 @@ function draw() {
   rect(0,965,1000,35); //window bottom
   rect(0,0,35,1000); //winidow left
   rect(960,0,40,1000); //window right
+
+  }
  
   
 
