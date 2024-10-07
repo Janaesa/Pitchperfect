@@ -25,7 +25,7 @@ function setup() {
 
 function draw() {
 
-  switch (state) 
+  switch (state) {} 
   //sky background
   background(205, 240, 255);
   image(clouds, 40, 50);
@@ -69,3 +69,10 @@ function touchMoved() {
 
 //if the bar reaches the top by a certain time then "perfect pitch" image appears
 //if the bar doesnt reach the top by a certain time "un*perfect pitch" image appears
+
+//states 0 = pitch perfect image with start button (home screen)
+// state 1 = the man wipping the window
+// state 2 = the glass breaking
+// state 3 = glass break return to first screen
+
+// after 30 seconds the screen will switch to un perfect pitch
