@@ -6,11 +6,13 @@ let wiper;
 let ladder;
 let mic;
 let soundLevel = 0;
+let state = 0;
 
 function preload() {
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
   gif_createImg = createImg("assets/mang.GIF");
+
 }
 
 function setup() {
@@ -22,6 +24,8 @@ function setup() {
 }
 
 function draw() {
+
+  switch (state) 
   //sky background
   background(205, 240, 255);
   image(clouds, 40, 50);
@@ -38,8 +42,10 @@ function draw() {
 
 
   //window frame
+
   rect(5,0,1000,35); //window top
   rect(5,500,1000,35); //window middle
+  fill("brown");
   rect(0,965,1000,35); //window bottom
   rect(0,0,35,1000); //winidow left
   rect(960,0,40,1000); //window right
