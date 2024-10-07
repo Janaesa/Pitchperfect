@@ -1,7 +1,5 @@
 let gui;
 let x;
-
-
 let clouds;
 let mang;
 let wiper;
@@ -13,14 +11,14 @@ function preload() {
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
   gif_createImg = createImg("assets/mang.GIF");
-  mic = new p5.AudioIn();
-  mic.start();
 }
 
 function setup() {
   createCanvas(1000, 1000);
   gui = createGui();
   x = createSliderV("Slider", 50, 50);
+  mic = new p5.AudioIn();
+  mic.start();
 }
 
 function draw() {
@@ -45,6 +43,8 @@ function draw() {
   rect(0,965,1000,35); //window bottom
   rect(0,0,35,1000); //winidow left
   rect(960,0,40,1000); //window right
+ 
+  
 
   // Get the sound level from the microphone
   soundLevel = mic.getLevel();
