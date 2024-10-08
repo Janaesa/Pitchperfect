@@ -12,30 +12,28 @@ let state = 0;
 function preload() {
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
-  gif_createImg = createImg("assets/mang.GIF");
+  //gif_createImg = createImg("assets/mang.GIF");
   pitch = loadImage("assets/pitch.JPG")
-
 }
 
 function setup() {
   createCanvas(1000, 1000);
+  
+  //vertical gui slider
   gui = createGui();
   x = createSliderV("Slider", 50, 50);
+
+  //initialize mic input
   mic = new p5.AudioIn();
   mic.start();
 }
 
 function draw() {
+  backround(220);
 
   switch (state) {
-
   case 0:
-    
-  // perform case 0 functions
-
-  background("pitch.JPG");
-
-  if (mouseIsPressed) state = 1;
+    image(pitch, 0, 0, width, height);
   break;
 
   case 1:
