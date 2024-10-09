@@ -21,13 +21,13 @@ function preload() {
   
   //glass shattering sound effect
   soundFormats('mp3')
-  sfx = loadSound('Broken glass sound effect (high quality).mp3');
+  sfx = loadSound('glassbreaking.mp3');
   sfx.setVolume(0.2)
 }
 
 function setup() {
   createCanvas(1000, 1000);
-  
+
   //vertical gui slider
   gui = createGui();
   x = createSliderV("Slider", 50, 50);
