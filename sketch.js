@@ -9,6 +9,9 @@ let ladder;
 let mic;
 let soundLevel = 0;
 let state = 0;
+let sfx;
+let imgX;
+let imgY;
 
 
 function preload() {
@@ -16,6 +19,12 @@ function preload() {
   ladder = loadImage("assets/ladder.png");
   gif_createImg = createImg("assets/mang.GIF");
   pitch = loadImage("assets/pitch.JPG")
+
+
+  //glass shattering sound effect
+  soundFormats('mp3')
+  sfx = loadSound('Broken glass sound effect (high quality).mp3');
+  sfx.setVolume(0.2)
 }
 
 function setup() {
@@ -28,6 +37,9 @@ function setup() {
   //initialize mic input
   mic = new p5.AudioIn();
   mic.start();
+
+  imgX = -500
+  imgY = -500
 }
 
 function draw() {
@@ -64,6 +76,10 @@ function draw() {
   rect(0,0,35,1000); //winidow left
   rect(960,0,40,1000); //window right
 
+  //loads image offscreen 
+  image(img, imgX, imgY, 200, 200)
+
+
   }
 
   // Get the sound level from the microphone
@@ -78,6 +94,13 @@ function draw() {
 
 }
 
+//interactivity
+function mousePressed() {
+  //calls image
+    imgX = mouseX - 80
+    imgY = mouseY + 40
+
+}
 
 function touchMoved() {
   return false;
