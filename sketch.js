@@ -9,25 +9,18 @@ let ladder;
 let mic;
 let soundLevel = 0;
 let state = 0;
-let sfx;
 
 
 function preload() {
-  img = loadImage("assets/Glass.png");
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
   gif_createImg = createImg("assets/mang.GIF");
   pitch = loadImage("assets/pitch.JPG")
-  
-  //glass shattering sound effect
-  soundFormats('mp3')
-  sfx = loadSound('glassbreaking.mp3');
-  sfx.setVolume(0.2)
 }
 
 function setup() {
   createCanvas(1000, 1000);
-
+  
   //vertical gui slider
   gui = createGui();
   x = createSliderV("Slider", 50, 50);
@@ -71,7 +64,6 @@ function draw() {
   rect(0,0,35,1000); //winidow left
   rect(960,0,40,1000); //window right
 
-
   }
 
   // Get the sound level from the microphone
@@ -86,12 +78,6 @@ function draw() {
 
 }
 
-//interactivity
-function mousePressed() {
-  //calls image
-  image(img,40,50,width,height);
-  sfx.play();
-}
 
 function touchMoved() {
   return false;
