@@ -1,3 +1,4 @@
+
 let gui;
 let x;
 let clouds;
@@ -9,10 +10,11 @@ let mic;
 let soundLevel = 0;
 let state = 0;
 
+
 function preload() {
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
-  //gif_createImg = createImg("assets/mang.GIF");
+  gif_createImg = createImg("assets/mang.GIF");
   pitch = loadImage("assets/pitch.JPG")
 }
 
@@ -29,11 +31,13 @@ function setup() {
 }
 
 function draw() {
-  backround(220);
 
   switch (state) {
   case 0:
+
     image(pitch, 0, 0, width, height);
+
+    if(mouseIsPressed) state = 1;
   break;
 
   case 1:
@@ -51,10 +55,6 @@ function draw() {
 
   gif_createImg.position(-50, 0)
 
-  
-
-
-
   //window frame
 
   rect(5,0,1000,35); //window top
@@ -65,8 +65,6 @@ function draw() {
   rect(960,0,40,1000); //window right
 
   }
- 
-  
 
   // Get the sound level from the microphone
   soundLevel = mic.getLevel();
@@ -77,11 +75,14 @@ function draw() {
   if (x.isChanged) {
     print(x.label + " = " + x.val);
   }
+
 }
+
 
 function touchMoved() {
   return false;
 }
+
 
 //if the bar reaches the top by a certain time then "perfect pitch" image appears
 //if the bar doesnt reach the top by a certain time "un*perfect pitch" image appears
