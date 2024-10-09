@@ -1,4 +1,3 @@
-
 let gui;
 let x;
 let clouds;
@@ -10,22 +9,21 @@ let mic;
 let soundLevel = 0;
 let state = 0;
 
-
 function preload() {
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
   gif_createImg = createImg("assets/mang.GIF");
-  pitch = loadImage("assets/pitch.JPG")
+  pitch = loadImage("assets/pitch.JPG");
 }
 
 function setup() {
   createCanvas(1000, 1000);
   
-  //vertical gui slider
+  // Include the GUI slider library
   gui = createGui();
-  x = createSliderV("Slider", 50, 50);
+  x = createSliderV("Slider", 50, 50, 100, 300);  // Added slider height and range
 
-  //initialize mic input
+  // Initialize mic input
   mic = new p5.AudioIn();
   mic.start();
 }
@@ -33,37 +31,32 @@ function setup() {
 function draw() {
 
   switch (state) {
-  case 0:
+    case 0:
+      image(pitch, 0, 0, width, height);
+      if (mouseIsPressed) state = 1;
+      break;
 
-    image(pitch, 0, 0, width, height);
+    case 1:
+      // Sky background
+      background(205, 240, 255);
+      image(clouds, 40, 50);
+      image(clouds, 300, 30);
+      image(clouds, 600, 5);
+      drawGui();
 
-    if(mouseIsPressed) state = 1;
-  break;
+      image(ladder, -50, 1);
 
-  case 1:
+      // Character position
+      gif_createImg.position(-50, 0);
 
-  //sky background
-  background(205, 240, 255);
-  image(clouds, 40, 50);
-  image(clouds, 300, 30);
-  image(clouds, 600, 5);
-  drawGui();
-
-  image(ladder,-50, 1)
-
-  // character position
-
-  gif_createImg.position(-50, 0)
-
-  //window frame
-
-  rect(5,0,1000,35); //window top
-  rect(5,500,1000,35); //window middle
-  fill("brown");
-  rect(0,965,1000,35); //window bottom
-  rect(0,0,35,1000); //winidow left
-  rect(960,0,40,1000); //window right
-
+      // Window frame
+      fill("brown");
+      rect(5, 0, 1000, 35); // window top
+      rect(5, 500, 1000, 35); // window middle
+      rect(0, 965, 1000, 35); // window bottom
+      rect(0, 0, 35, 1000); // window left
+      rect(960, 0, 40, 1000); // window right
+      break;
   }
 
   // Get the sound level from the microphone
@@ -75,21 +68,8 @@ function draw() {
   if (x.isChanged) {
     print(x.label + " = " + x.val);
   }
-
 }
-
 
 function touchMoved() {
   return false;
 }
-
-
-//if the bar reaches the top by a certain time then "perfect pitch" image appears
-//if the bar doesnt reach the top by a certain time "un*perfect pitch" image appears
-
-//states 0 = pitch perfect image with start button (home screen)
-// state 1 = the man wipping the window
-// state 2 = the glass breaking
-// state 3 = glass break return to first screen
-
-// after 30 seconds the screen will switch to un perfect pitch
