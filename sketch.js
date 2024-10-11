@@ -28,7 +28,7 @@ function setup() {
   createCanvas(1000, 1000);
   
   gui = createGui();
-  x = createSliderV("Slider", 50, 50, 100, 300);  // Slider for sound control
+  x = createSliderV("Slider", 70, 100, 100, 300);  // Slider for sound control
 
   // Position the GIF
   mangGif.position(-50, 0);
@@ -74,13 +74,18 @@ function draw() {
       }
 
       break;
+
+      case 2:
+        //glass break code
+
+    
   }
 
   // Get the sound level from the microphone
-  soundLevel = mic.getLevel();
+  volume = mic.getLevel();
 
   // Map the sound level to the slider value
-  x.val = map(soundLevel, 0, 1, 0, 100);
+  x.val = map(volume, 0, 1, 0, 10);
 
   if (x.isChanged) {
     print(x.label + " = " + x.val);
