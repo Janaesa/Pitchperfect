@@ -3,6 +3,7 @@ let x;
 let clouds;
 let pitch;
 let mangGif;
+let unpitch;
 let wiper;
 let ladder;
 let mic;
@@ -13,12 +14,14 @@ let glassImage;
 let glassX = -1;  // to put glass where mouse is clicked 
 let glassY = -1;
 
+
 function preload() {
   glassImage = loadImage("assets/Glass.png");
   clouds = loadImage("assets/clouds.png");
   ladder = loadImage("assets/ladder.png");
   mangGif = createImg("assets/mang.GIF"); // Keep the GIF as an HTML element
   pitch = loadImage("assets/pitch.JPG");
+  unpitch = loadImage("assets/unpitch.JPG");
 
   soundFormats('mp3');
   glassSound = loadSound('assets/glassbreaking.mp3'); // Renamed for clarity
@@ -28,7 +31,7 @@ function setup() {
   createCanvas(1000, 1000);
   
   gui = createGui();
-  x = createSliderV("Slider", 70, 100, 100, 300);  // Slider for sound control
+  x = createSliderV("Slider", 70, 100, 100, 400);  // Slider for sound control
 
   // Position the GIF
   mangGif.position(-50, 0);
@@ -72,14 +75,20 @@ function draw() {
       if (glassX !== -1 && glassY !== -1) {
         image(glassImage, glassX - glassImage.width / 2, glassY - glassImage.height / 2);
       }
-
       break;
 
       case 2:
-        //glass break code
 
+        image(unpitch, 0, 0, width, height);
+        glassSound.play();
+
+        mangGif.hide();
+      
+      break;
     
   }
+ 
+
 
   // Get the sound level from the microphone
   volume = mic.getLevel();
