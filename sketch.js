@@ -13,6 +13,8 @@ let glassSound;
 let glassImage;
 let glassX = -1;  // to put glass where mouse is clicked 
 let glassY = -1;
+let volumeThreshold = 4; //GUI max value
+let volume;
 
 
 function preload() {
@@ -88,7 +90,11 @@ function draw() {
     
   }
  
+  // switch from Case 1 to Case 2
 
+  if (x.val >= volumeThreshold) {
+    image(unpitch, 0, 0, width, height); glassSound.play();mangGif.hide();
+   }
 
   // Get the sound level from the microphone
   volume = mic.getLevel();
