@@ -13,9 +13,8 @@ let glassSound;
 let glassImage;
 let glassX = -1;  // to put glass where mouse is clicked 
 let glassY = -1;
-let volumeThreshold = 4; //GUI max value
+let volumeThreshold = 4; // GUI max value
 let volume;
-
 
 function preload() {
   glassImage = loadImage("assets/Glass.png");
@@ -31,6 +30,11 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 1000);
+  noCursor(); // Hide the cursor in the canvas
+
+  // Force the cursor to stay hidden globally by applying a CSS style
+  let body = document.querySelector('body');
+  body.style.cursor = 'none';  // This hides the cursor globally
   
   gui = createGui();
   x = createSliderV("Slider", 70, 100, 100, 400);  // Slider for sound control
@@ -38,6 +42,7 @@ function setup() {
   // Position the GIF
   mangGif.position(-50, 0);
   mangGif.hide(); // Hide initially, only show when needed
+  mangGif.style('cursor', 'none'); // Hide the cursor when hovering over the GIF
   
   // Initialize mic input
   mic = new p5.AudioIn();
@@ -45,7 +50,6 @@ function setup() {
 }
 
 function draw() {
-
   switch (state) {
     case 0:
       image(pitch, 0, 0, width, height);
@@ -73,28 +77,25 @@ function draw() {
       rect(0, 0, 35, 1000); // window left
       rect(960, 0, 40, 1000); // window right
       
-      // for glass to break where the mouse is clicked 
+      // Break glass effect where the mouse is clicked
       if (glassX !== -1 && glassY !== -1) {
         image(glassImage, glassX - glassImage.width / 2, glassY - glassImage.height / 2);
       }
       break;
 
-      case 2:
-
-        image(unpitch, 0, 0, width, height);
-        glassSound.play();
-
-        mangGif.hide();
-      
+    case 2:
+      image(unpitch, 0, 0, width, height);
+      glassSound.play();
+      mangGif.hide();
       break;
-    
   }
- 
-  // switch from Case 1 to Case 2
 
+  // switch from Case 1 to Case 2
   if (x.val >= volumeThreshold) {
-    image(unpitch, 0, 0, width, height); glassSound.play();mangGif.hide();
-   }
+    image(unpitch, 0, 0, width, height); 
+    glassSound.play();
+    mangGif.hide();
+  }
 
   // Get the sound level from the microphone
   volume = mic.getLevel();
@@ -108,11 +109,11 @@ function draw() {
 }
 
 function mousePressed() {
-  // Play the glass breaking sound when mouse is pressed
+  // Play the glass breaking sound and set the glass position to where the mouse is clicked
   if (state === 1) {
     glassSound.play();
     
-    // to press the mouse 
+    // Set glass to appear where the mouse is clicked, but cursor is still hidden
     glassX = mouseX;
     glassY = mouseY;
   }
