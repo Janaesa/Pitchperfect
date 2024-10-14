@@ -15,6 +15,7 @@ let glassX = -1;  // to put glass where mouse is clicked
 let glassY = -1;
 let volumeThreshold = 4; // GUI max value
 let volume;
+let timer = 5
 
 function preload() {
   glassImage = loadImage("assets/Glass.png");
@@ -57,6 +58,13 @@ function draw() {
       break;
 
     case 1:
+
+     textAlign(CENTER, CENTER);
+     textSize(100);
+     text(timer, width/2, height/2);
+
+
+
       // Sky background
       background(205, 240, 255);
       image(clouds, 40, 50);
@@ -84,17 +92,26 @@ function draw() {
       break;
 
     case 2:
-      image(unpitch, 0, 0, width, height);
+      image(pitch, 0, 0, width, height);
       glassSound.play();
       mangGif.hide();
       break;
   }
+  
 
   // switch from Case 1 to Case 2
   if (x.val >= volumeThreshold) {
-    image(unpitch, 0, 0, width, height); 
+    image(pitch, 0, 0, width, height); 
     glassSound.play();
     mangGif.hide();
+  }
+
+   //timer
+   if (frameCount % 60 == 0 && timer > 0) { // if the frameCount is divisible by 60, then a second has passed. it will stop at 0
+    timer --;
+  }
+  if (timer == 0) {
+    image(unpitch, 0, 0, width, height);mangGif.hide();
   }
 
   // Get the sound level from the microphone
