@@ -16,6 +16,7 @@ let glassY = -1;
 let volumeThreshold = 4; // GUI max value
 let volume;
 let timer = 30
+let shatter;
 
 function preload() {
   glassImage = loadImage("assets/Glass.png");
@@ -24,6 +25,7 @@ function preload() {
   mangGif = createImg("assets/mang.GIF"); // Keep the GIF as an HTML element
   pitch = loadImage("assets/pitch.JPG");
   unpitch = loadImage("assets/unpitch.JPG");
+  shatter = createImg("assets/shatter.gif");
 
   soundFormats('mp3');
   glassSound = loadSound('assets/glassbreaking.mp3'); // Renamed for clarity
@@ -45,6 +47,10 @@ function setup() {
   mangGif.hide(); // Hide initially, only show when needed
   mangGif.style('cursor', 'none'); // Hide the cursor when hovering over the GIF
   
+shatter.position(0,0);
+shatter.hide();
+shatter.style('cursor','none');
+
   // Initialize mic input
   mic = new p5.AudioIn();
   mic.start();
@@ -92,7 +98,8 @@ function draw() {
       break;
 
     case 2:
-      image(pitch, 0, 0, width, height);
+      image(shatter.show(), 0, 0, width, height);
+      shatter.position(0,0);
       glassSound.play();
       mangGif.hide();
       break;
