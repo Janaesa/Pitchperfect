@@ -15,7 +15,7 @@ let glassX = -1;  // to put glass where mouse is clicked
 let glassY = -1;
 let volumeThreshold = 4; // GUI max value
 let volume;
-let timer = 5
+let timer = 30
 
 function preload() {
   glassImage = loadImage("assets/Glass.png");
