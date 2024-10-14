@@ -60,6 +60,7 @@ function draw() {
     case 0:
       image(pitch, 0, 0, width, height);
       if (mouseIsPressed) state = 1;
+      mangGif.hide();
       break;
 
     case 1:
@@ -99,12 +100,13 @@ function draw() {
     case 2:
       if (gifTimer > 0) {
         shatter.show();
-        image(shatter, 0, 0, width, height);  // Display GIF
+        image(shatter, 0, 0, width, height); 
+        //glassSound.play();// Display GIF
         gifTimer--;
-
+      } else {
         if (gifTimer <= 0) {
           shatter.hide();  // Hide the GIF after 6 seconds
-          state = 1;  // Return to state 1 after GIF plays fully
+          state = 0;  // Return to state 1 after GIF plays fully
         }
       }
       break;
