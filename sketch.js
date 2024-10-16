@@ -137,6 +137,13 @@ function mousePressed() {
   }
 }
 
+function keyPressed() {
+  if (keycode === ENTER ) {
+  image(pitch, 0, 0, width, height);
+    mangGif.hide();
+}
+}
+
 function touchMoved() {
   return false;
 }
